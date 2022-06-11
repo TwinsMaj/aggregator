@@ -6,4 +6,7 @@ export default {
 	migrations: {
 		extension: 'ts',
 	},
+	seeds: {
+		extension: 'ts',
+	},
 };
