@@ -1,2 +1,3 @@
 # aggregator
-Simple warehouse and offices aggregator
+
+Simple warehouse and offices aggregator service
