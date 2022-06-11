@@ -3,6 +3,8 @@ version: '2'
 services:
   aggregator:
     build: .
+    depends_on:
+      - db
     ports:
       - 8000:8000
       - 9229:9229 # debugging
@@ -11,4 +13,13 @@ services:
       - /usr/src/app/node_modules
     command: npm run start:dev
     environment:
-      PORT: 8000
+      PORT: ${SERVER_PORT}
+
+  db:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}

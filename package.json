@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "rimraf dist && swc ./src -d dist",
 		"start": "node dist/index.js",
-		"start:dev": "npm run build && npm run start"
+		"start:dev": "npm run build && npm run start",
+		"copy-env": "cp .env.example .env"
 	},
 	"keywords": [],
 	"author": "",
