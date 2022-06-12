@@ -4,6 +4,7 @@ import { config } from './config';
 import Logger from './logger';
 import { apiRules } from './middleware/api-rules';
 import { requestLogger } from './middleware/request-logger';
+import { healthCheck } from './routes/health-check';
 
 const app = express();
 
@@ -13,6 +14,9 @@ const initServer = async () => {
 
 	// define API Rules
 	app.use(apiRules);
+
+	// Healthcheck
+	app.get('/health-check', healthCheck);
 
 	http
 		.createServer(app)
