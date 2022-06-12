@@ -1,6 +1,12 @@
 import { Knex } from 'knex';
+import { isDbSeeded } from '../docker-files/scripts/check_seeds';
 
 export async function seed(knex: Knex): Promise<void> {
+	if (await isDbSeeded(knex)) {
+		console.info(`Offices table already seeded on first run. Skipping....`);
+		return;
+	}
+
 	// Deletes ALL existing entries
 	await knex('Offices').del();
 
