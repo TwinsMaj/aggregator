@@ -1,5 +1,6 @@
 import express from 'express';
 import http from 'http';
+import Router from './routes';
 import { config } from './config';
 import Logger from './logger';
 import { apiRules } from './middleware/api-rules';
@@ -18,6 +19,9 @@ const initServer = async () => {
 
 	// Healthcheck
 	app.get('/health-check', healthCheck);
+
+	// load routes
+	app.use('/api/v1', Router);
 
 	// handle errors
 	app.use(errorHandler);
