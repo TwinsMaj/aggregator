@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"build": "rimraf dist && swc ./src -d dist",
-		"start": "node dist/index.js",
+		"build": "rimraf dist && swc ./src -d dist/src && npm run build:knexfile",
+		"build:knexfile": "swc ./knexfile.ts -o dist/knexfile.js && rimraf dist/knexfile.js.map",
+		"start": "node dist/src/index.js",
 		"start:dev": "npm run build && npm run start",
 		"db:migrate": "knex migrate:latest",
 		"db:seed": "knex seed:run",
@@ -15,7 +16,6 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@prisma/client": "^3.15.1",
 		"chalk": "^4.1.2",
 		"dotenv": "^16.0.1",
 		"express": "^4.18.1",
@@ -36,7 +36,6 @@
 		"@typescript-eslint/parser": "^5.25.0",
 		"eslint": "^8.16.0",
 		"jest": "^28.1.0",
-		"prisma": "^3.15.1",
 		"regenerator-runtime": "^0.13.9",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^28.0.3",

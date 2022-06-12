@@ -1,5 +1,4 @@
 import { Knex } from 'knex';
-import { exit } from 'process';
 import { isDbSeeded } from '../docker-files/scripts/check_seeds';
 
 export async function seed(knex: Knex): Promise<void> {
