@@ -3,6 +3,7 @@ import http from 'http';
 import { config } from './config';
 import Logger from './logger';
 import { apiRules } from './middleware/api-rules';
+import { errorHandler } from './middleware/error-handler';
 import { requestLogger } from './middleware/request-logger';
 import { healthCheck } from './routes/health-check';
 
@@ -17,6 +18,9 @@ const initServer = async () => {
 
 	// Healthcheck
 	app.get('/health-check', healthCheck);
+
+	// handle errors
+	app.use(errorHandler);
 
 	http
 		.createServer(app)
