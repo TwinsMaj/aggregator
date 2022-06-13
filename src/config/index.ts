@@ -1,3 +1,4 @@
+import path from 'path';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,14 +10,23 @@ const DB_PASSWORD = process.env.DB_PASSWORD || '';
 const DB_HOST = process.env.DB_HOST || '';
 
 const DATABASE_URL = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
+const TEST_DB_NAME = 'test.sqlite3';
 
-const devConfig = {
+type config = {
+	dbName?: string;
+	server: Record<string, any>;
+	db: Record<string, any>;
+};
+
+const devConfig: config = {
 	server: {
 		port: SERVER_PORT,
 		env: 'development',
 	},
 	db: {
+		client: 'pg',
 		url: DATABASE_URL,
+		defaults: {},
 	},
 };
 
@@ -26,8 +36,14 @@ const testConfig = {
 		env: 'test',
 	},
 	db: {
-		url: '',
+		client: 'sqlite3',
+		url: {
+			filename: path.resolve(__dirname, `../../${TEST_DB_NAME}`),
+			dateStrings: true,
+		},
+		defaults: { useNullAsDefault: true },
 	},
+	dbName: TEST_DB_NAME,
 };
 
 export const config = process.env.NODE_ENV === 'test' ? testConfig : devConfig;

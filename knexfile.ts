@@ -1,7 +1,7 @@
 import { config } from './src/config';
 
 export default {
-	client: 'pg',
+	client: config.db.client,
 	connection: config.db.url,
 	migrations: {
 		extension: 'ts',
@@ -9,4 +9,5 @@ export default {
 	seeds: {
 		extension: 'ts',
 	},
+	...config.db.defaults,
 };

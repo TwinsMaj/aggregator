@@ -8,7 +8,7 @@ import { errorHandler } from './middleware/error-handler';
 import { requestLogger } from './middleware/request-logger';
 import { healthCheck } from './routes/health-check';
 
-const app = express();
+export const app = express();
 
 const initServer = async () => {
 	// log request
