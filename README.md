@@ -6,7 +6,7 @@ Simple warehouse and offices aggregator service
 
 - Node v17.9.0
 - `NVM` Nodejs version manager
-- `npm` form managing packages
+- `npm` for managing packages
 - Feel free to use any nodejs version manager. But keep the node version consistent with the version specified in
   `.nvmrc` file.
 - Docker Desktop `v4.3.2`
@@ -14,8 +14,8 @@ Simple warehouse and offices aggregator service
 
 ### Development
 
-- run `npm run copy-env` to create a `.env` file. Fill in desired db credentials
 - run `nvm` use
+- run `npm run copy-env` to create a `.env` file. Fill in desired db credentials
 - run `npm install`
 - run `docker-compose up`
 
